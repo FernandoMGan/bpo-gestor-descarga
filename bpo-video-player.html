@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bpo Change - Video Player</title>
+    <!-- Base de Datos en JS -->
+    <!-- <link rel="stylesheet" href="./js/bd/paises.js"> -->
+    <!-- Estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/5.3/assets/css/docs.css">
+
+    <!-- …or create a new repository on the command line
+    echo "# test-by-js-buscador" >> README.md
+    git init
+    git add README.md
+    git commit -m "first commit"
+    git branch -M main
+    git remote add origin https://github.com/FernandoMGan/test-by-js-buscador.git
+    git push -u origin main
+
+    …or push an existing repository from the command line
+    git remote add origin https://github.com/FernandoMGan/test-by-js-buscador.git
+    git branch -M main
+    git push -u origin main -->
+
+    <style>
+        :root {
+            /* Estilos Universales */
+            /* Especificos de color */
+            --bpo-wa-base-background: #fcf8c6;
+            --bpo-wa-base-menu: white;
+
+            --bpo-wa-border-bloque: gray;
+            --bpo-wa-border-foco-fondo: lightgray;
+            --bpo-wa-border-foco-txt: blue;
+
+            --bpo-wa-box-proyect: orange;
+
+            /* Colores especificos para testeo y ubicacion de cajas */
+            --bpo-wa-test-01: rgb(219, 127, 158);
+            --bpo-wa-test-02: rgb(200, 60, 83);
+            --bpo-wa-test-03: rgb(255, 0, 0);
+            --bpo-wa-test-04: rgb(214, 178, 255);
+            --bpo-wa-test-05: rgb(175, 40, 238);
+            /* Especificos de unidades de medida */
+            --bpo-unit-spacing: 0.25em;
+
+            /* Colores viejos por compatibilidad */
+            --brdColorTitulos: black;
+            --brdColorFondo: white;
+            --brdColorCajas: orange;
+            --brdColorIngresos: blue;
+            --brdColorLeyendas: green;
+            --brdColorLeyendasSuave: lightgreen;
+        }
+
+        body {
+            background-color: var(--bpo-wa-base-background);
+            margin: 0px;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            position: fixed;
+            left: 1%;
+            top: 0;
+
+            background-color: var(--bpo-wa-base-menu);
+
+            padding: 0;
+            /* calc(var(--bpo-unit-spacing) * 0.1) 0; */
+            border: 1px solid var(--bpo-wa-border-bloque);
+
+            top: calc(var(--bpo-unit-spacing) * 0.5);
+            height: calc(var(--bpo-unit-spacing) * 7.5);
+            width: 98%;
+
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav * {
+            /* Estilos que deseas aplicar a los hijos directos de clase "nav" */
+            display: flex;
+            flex-direction: row;
+
+            /* top: calc(var(--bpo-unit-spacing) * 0.5); */
+            height: calc(var(--bpo-unit-spacing) * 3);
+            margin: calc(var(--bpo-unit-spacing) * 0.50) calc(var(--bpo-unit-spacing) * 2) calc(var(--bpo-unit-spacing) * 0.5) calc(var(--bpo-unit-spacing) * 1.5);
+            align-items: center;
+            justify-content: left;
+        }
+
+        .nav .navImg:hover {
+            cursor: pointer;
+        }
+
+        .navBoxSearchKeys {
+            display: flex;
+            flex-direction: row;
+            position: relative;
+
+            border: 1px solid var(--bpo-wa-border-bloque);
+            border-radius: 25px;
+
+            top: calc(var(--bpo-unit-spacing) * 0.50);
+            height: calc(var(--bpo-unit-spacing) * 3);
+            width: 350px;
+            margin: calc(var(--bpo-unit-spacing) * 0.25) calc(var(--bpo-unit-spacing) * 2) calc(var(--bpo-unit-spacing) * 1) calc(var(--bpo-unit-spacing) * 1.5);
+
+            padding: calc(var(--bpo-unit-spacing)*1.5) calc(var(--bpo-unit-spacing)*2);
+            justify-content: space-between;
+        }
+
+        .navBoxSearchKeysImgDiv {
+            border: 1px solid var(--bpo-wa-border-bloque);
+            height: 130%;
+            padding: 0;
+            margin: calc(var(--bpo-unit-spacing) * -0.75) calc(var(--bpo-unit-spacing) * 1) -2px calc(var(--bpo-unit-spacing) * 0.5);
+        }
+
+        .navBoxSearchKeysImg>.navImg {
+            position: relative;
+            top: calc(var(--bpo-unit-spacing) * 0.25);
+            margin-right: calc(var(--bpo-unit-spacing) * 0);
+        }
+
+        .proyect-title {
+            display: flex;
+            position: fixed;
+            border: 1px solid var(--bpo-wa-box-proyect);
+            border-radius: calc(var(--bpo-unit-spacing) * 2);
+
+            font-size: smaller;
+            text-align: center;
+
+            top: calc((var(--bpo-unit-spacing) * 4) + (var(--bpo-unit-spacing)* 6.5));
+            height: calc(var(--bpo-unit-spacing) * 2);
+            width: 96%;
+            margin: calc(var(--bpo-unit-spacing) * 1) calc(var(--bpo-unit-spacing) * 3) calc(var(--bpo-unit-spacing) * 1) calc(var(--bpo-unit-spacing) * 3);
+
+            padding: calc(var(--bpo-unit-spacing)*2);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .playerbody {
+            display: flex;
+            flex-direction: row;
+
+            position: relative;
+
+            background-color: var(--bpo-wa-test-01);
+            border: 1px solid var(--bpo-wa-border-bloque);
+
+            left: 1%;
+            height: 300px;
+            width: 98%;
+
+            top: calc((var(--bpo-unit-spacing) * 4) + (var(--bpo-unit-spacing)* 2.8));
+            /* top: calc((var(--bpo-unit-spacing) * 4) + (var(--bpo-unit-spacing)* 6.0)); */
+
+        }
+
+        .playerVideo {
+            background-color: var(--bpo-wa-test-02);
+            display: flex;
+            flex-direction: row;
+            position: relative;
+
+            height: 100vh;
+            width: 78vw;
+            top: 10px;
+            /* top: calc((var(--bpo-unit-spacing) * 4) + (var(--bpo-unit-spacing)* 8.0)); */
+
+        }
+
+        .playerLista {
+            background-color: var(--bpo-wa-test-03);
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            height: 100vh;
+            width: 20vw;
+            /* top: 1px; */
+            /* top: calc((var(--bpo-unit-spacing) * 4) + (var(--bpo-unit-spacing)* 8.0)); */
+
+        }
+
+        .playerResumenBlogTransOriginal h1 {
+            text-align: left;
+        }
+
+        .playerResumenBlog h3 {
+            text-align: center;
+        }
+
+        /* Ajuste de propiedades por id */
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="navBoxBrand">
+            <img class="navImg" id="" src="./assets/buttons-svg/list.svg" alt="Menu Hamburguesa">
+            <img class="navImg" id="" src="./assets/logos/logoCombinado.png" alt="Logo Combinado">
+            Bpo Change - Video Player
+        </div>
+        <div class="navBoxSearch">
+            <div class="navBoxSearchKeys">
+                <div class="navBoxSearchKeysSearch">
+                    <form action="" method="get">
+                        <div class="inputTxt">
+                            <input type="text" class="form-control" id="idVideoSearched" name="search"
+                                placeholder="Buscar...">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit" onclick="fncVideoRun()">Buscar</button>
+                                <!-- C:\Home\Desarrollo\bpo-www\portafolio\bpo-video-player\media\video\JingleSebaBalochi.mpeg -->
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="navBoxSearchKeysImg">
+                    <img class="navImg" id="" src="./assets/buttons-svg/search.svg" alt="Lupa para buscar">
+                    <img class="navImg" id="" src="./assets/buttons-svg/line-vertical.svg" alt="Linea divisoria">
+                    <img class="navImg" id="" src="./assets/buttons-svg/mic-fill.svg" alt="Escribir por Microfono">
+                </div>
+            </div>
+        </div>
+        <div class="navBoxAcount">
+            <img class="navImg" id="" src="./assets/buttons-svg/bell.svg" alt="Campanita de Notificaciones">
+            <img class="navImg" id="" src="./assets/buttons/butLogOff.png" alt="Loguin Off / In de Usuario">
+
+        </div>
+
+    </div>
+    <div class="proyect-title">
+        Testeando Json Works - Reproductor de Video by JS - Devel: Fernando M. Gan
+    </div>
+    <br><br>
+    <div class="box playerbody">
+        <div class="playerVideo">
+            <div class="playerReprod">
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/HjfjemLjrxI" frameborder="1"
+                    allowfullscreen></iframe>
+                <!-- <iframe width="640" height="360" src=fncGetVideo() frameborder="1"
+                    allowfullscreen></iframe> -->
+            </div>
+            <div class="playerTitulo"></div>
+            <div class="playerBarra"></div>
+
+            <div class="playerResumen"></div>
+            <div class="playerResumenBlog">
+                <div class="playerResumenBlogComent"></div>
+                <div class="playerResumenBlogTransOriginal">
+                    <h3>Transcripción del Video</h3>
+                    <textarea id="idTxtTranscripOriginal" rows="10" cols="50"></textarea>
+                </div>
+                <div class="playerResumenBlogAuxiliares">
+                    <h3>Vistas ...</h3>
+                    <h3>Likes ...</h3>
+                    <h3>Comentarios ...</h3>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="playerLista">003 ..<br>003.1 .. 0123456789 123456789 123456789<br>003.2 .. 0123456789 123456789
+            123456789</div>
+    </div>
+    <!-- <div class="playerVideo"></div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+    <script>
+        // Supongamos que tienes el contenido de la transcripción en una variable llamada "transcripcion"
+        // var transcripcion = "Aquí está el contenido de la transcripción del video...";
+        // var transcTrad = "Here is the content of the video transcript...";
+
+
+        // // Inserta la transcripción en el textarea
+        // var txtTranscripOriginal = document.getElementById("idTxtTranscripOriginal");
+        // txtTranscripOriginal.value = transcripcion;
+        // var txtTranscripTrad = document.getElementById("idTxtTranscripTrad");
+        // txtTranscripTrad.value = transcTrad;
+
+
+        // URL del video de YouTube
+        var urlVideo = "https://www.youtube.com/watch?v=HjfjemLjrxI";
+
+        // Obtiene el ID del video desde la URL
+        var videoId = getVideoId(urlVideo);
+
+        // URL de la API de YouTube Data API v3
+        var apiUrl = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoId + "&key=AIzaSyBrcR_G5TzQjp0o_MFf3gvSpWLK4NIblbk";
+
+        // // Realiza una solicitud a la API de YouTube
+        // fetch(apiUrl)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         // Extrae la transcripción del video (simplemente como ejemplo)
+        //         var transcription = "Aquí va la transcripción del video...";
+
+        //         // Inserta la transcripción en el textarea
+        //         var txtTranscripOriginal = document.getElementById("idTxtTranscripOriginal");
+        //         txtTranscripOriginal.value = transcription;
+        //     })
+        //     .catch(error => console.error('Error:', error));
+
+        // llamador de url de video
+        function fncGetVideo() {
+            return urlVideo;
+        }
+
+        // URL de la API de YouTube Data API v3 Captions
+        var apiUrl = "https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=" + videoId + "&key=AIzaSyBrcR_G5TzQjp0o_MFf3gvSpWLK4NIblbk";
+
+        // Realiza una solicitud a la API de YouTube Captions
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.items && data.items.length > 0) {
+                    // Obtiene el ID del primer subtítulo (caption)
+                    var captionId = data.items[0].id;
+
+                    // Obtiene los detalles del subtítulo
+                    getCaptionDetails(captionId);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+
+
+
+        // Función para obtener el ID del video desde la URL
+        function getVideoId(url) {
+            var match = url.match(/[?&]v=([^&]+)/);
+            return match ? match[1] : null;
+        }
+        // Función para obtener los detalles del subtítulo (caption)
+        function getCaptionDetails(captionId) {
+            var captionUrl = "https://www.googleapis.com/youtube/v3/captions/" + captionId + "?part=snippet&key=AIzaSyBrcR_G5TzQjp0o_MFf3gvSpWLK4NIblbk";
+
+            fetch(captionUrl)
+                .then(response => response.json())
+                .then(data => {
+                    var transcription = data.snippet.body;
+
+                    // Inserta la transcripción en el textarea
+                    var txtTranscripOriginal = document.getElementById("idTxtTranscripOriginal");
+                    txtTranscripOriginal.value = transcription;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+    </script>
+</body>
+
+</html>
