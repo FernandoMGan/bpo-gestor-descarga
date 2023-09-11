@@ -1,0 +1,309 @@
+        /* Estilos CSS para dar formato a los resultados */
+        /* Estilos Universales */
+        /* Especificos de color */
+        :root {
+            --bpo-wa-base-background: #fcf8c6;
+            --bpo-wa-base-menu: white;
+            --bpo-wa-border-bloque: gray;
+            --bpo-wa-border-foco-fondo: lightgray;
+            --bpo-wa-border-foco-txt: blue;
+            --bpo-wa-box-proyect: orange;
+            --bpo-wa-test-01: rgb(219, 127, 158);
+            --bpo-wa-test-02: rgb(200, 60, 83);
+            --bpo-wa-test-03: rgb(255, 0, 0);
+            --bpo-wa-test-04: rgb(214, 178, 255);
+            --bpo-wa-test-05: rgb(175, 40, 238);
+            /* Especificos de unidades de medida */
+            --bpo-unit-spacing: 0.25em;
+        }
+
+        .frCntdLiGralVideo > img:hover, .frCntdLiGralDetailsTitulo:hover, #frCmdBtnsBtnDown:hover{
+            cursor: pointer;
+        }
+
+        .panels {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            border: 1px solid gray;
+            border-radius: 5px;
+            height: auto;
+            width: 100%;
+            gap: 10px;
+            position: initial;
+            top: calc(var(--bpo-unit-spacing*2));
+        }
+
+        .panels-lf-it {
+            overflow: auto;
+            padding-left: 5px;
+        }
+
+        .panel-lf,
+        .panel-md,
+        .panel-rt {
+            display: flex;
+            flex-direction: column;
+
+            border: 1px solid gray;
+            border-radius: 5px;
+
+            margin: 5px 0 5px 5px;
+            height: 750px;
+        }
+
+        .panel-lf {
+            margin-left: 0px;
+            height: 50px;
+            width: 450px;
+            padding: 5px;
+        }
+
+        .panel-md {
+            width: calc(99% - 800px);
+        }
+
+        .panel-rt {
+            width: 290px;
+        }
+
+        .panel-md h3,
+        .panel-rt h3 {
+            text-align: center;
+        }
+
+        .frCmdBtns {
+            gap: 1px;
+        }
+
+        .frCmdBtns:nth-child(2) {
+            font-style: normal;
+            margin-left: -15px;
+        }
+
+        .frCmdBtns:nth-child(4) {
+            margin-left: -15px;
+        }
+
+        .frCmdBtns:nth-child(5),
+        .frCmdBtns:nth-child(6) {
+            display: none;
+            margin-left: -15px;
+        }
+
+        #frCmdBtnsItViews {
+            margin-left: 1px;
+        }
+
+        #frCmdBtnsItHandUp {
+            margin-left: 1px;
+        }
+
+        #frCmdBtnsItHandDown {
+            margin-left: 1px;
+        }
+
+        #frCmdBtnsItLDown {
+            margin-left: 1px;
+        }
+
+        .frCntdLi {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+
+            height: 30px;
+            gap: 5px;
+        }
+
+        .frCntdLiGral {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            height: 125px;
+            width: 450px;
+            max-width: 450px;
+            border-radius: 5px;
+            border: 1px solid blue;
+            padding: 5px;
+            gap: 5px;
+        }
+
+        .frCntdLiGralVideo {
+            /* border: 1px solid #f50101; */
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+            width: 160px;
+            padding: 5px;
+        }
+
+        .frCntdLiGralDetails {
+            margin-left: 10px;
+            width: 55%;
+        }
+
+        .frCntdLiGralDetailsCmds {
+            display: inline-flex;
+            flex-wrap: wrap;
+
+            font-size: smaller;
+            font-weight: bold;
+
+            margin-top: 5px;
+            height: 10px;
+            width: -webkit-fill-available;
+            gap: 10px;
+
+            align-content: flex-start;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .frCntdLiGralDetailsCmds>img {
+            height: 10px;
+        }
+
+        .frCntdLiGralDetailsTitulo {
+            border-bottom: 1px dotted gray;
+            font-size: smaller;
+            font-weight: bold;
+        }
+
+        .frCntdLiGralDetailsVideoID {
+            color: red;
+            font-weight: bold;
+        }
+
+        .frCntdLiGralVideoImage {
+            height: 96%;
+            width: 99%;
+            border-radius: 5px;
+        }
+        .frCntdLiGralVideoImage:hover, .frCntdLiGralDetailsTitulo:hover, #frCmdBtnsBtnDown:hover {
+            cursor: pointer;
+            color: var(red);
+            font-weight: bolder;
+        }
+
+        .frCntdLiGralDetailsResumen {
+            display: flex;
+            flex-wrap: nowrap;
+            font-size: smaller;
+            height: 55px;
+            max-height: 55px;
+            /* Altura máxima permitida */
+            overflow: auto;
+            /* border: 1px solid rebeccapurple; */
+        }
+
+        #searchInput {
+            height: 44px;
+            width: 360px;
+
+        }
+
+        #searchButton {
+            height: 50px;
+            width: 78px;
+        }
+
+        .dPanelMdIt {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .TituloPrimario {
+            font-size: medium;
+            margin: 0.5px;
+        }
+
+        .TituloSecundario {
+            font-size: small;
+            margin: 0.5px;
+
+        }
+
+        .TituloTranscripOrigianl,
+        .TituloTranscripTraduccion {
+            font-size: smaller;
+            margin: 0.5px;
+            height: 150px;
+
+        }
+
+        .TituloSecundarioItCab,
+        .TituloTranscripOrigianlItCab,
+        .TituloTranscripTraduccionCab {
+            color: var(--bpo-wa-border-foco-txt);
+            border: 1px solid var(--bpo-wa-border-bloque);
+            border-radius: 5px;
+
+            text-align: center;
+            /* padding: 0.5px; */
+        }
+
+        .dPanelMdItVidTitPrimaCab {
+            height: 50px;
+            
+        }
+        .yt-video{
+            height: 98%;
+            width: 98%;        
+        }
+
+        .dPanelMdItVidTitPrimaDet {
+            height: 500px;
+        }
+
+        .TituloSecundarioItDet {
+            color: black;
+            font-size: smaller;
+            font-weight: bold;
+            height: 30px;
+            margin-top: 10px;
+            align-items: center;
+        }
+
+        .TituloTranscripOrigianlItDet {
+            display: flex;
+            color: black;
+            font-size:larger;
+            font-weight: bold;
+            height: 100px;
+            overflow: scroll;
+            align-items: center;
+
+        }
+        #TranscripTrad{
+            color: black;
+            font-size: smaller;
+            font-weight: bold;
+            padding-top: 1px;
+
+        }
+
+        .ReproduciendoTituloItDet{
+            font-weight: 800;
+
+        }
+
+        .TituloTranscripTraduccionDet {
+            color: black;
+            font-size: smaller;
+            font-weight: bold;
+            height: 200px;
+            overflow: scroll;
+            align-items: center;
+
+        }
+
+        .vp-none {
+            /* Ocultando frame de prueba y ejemplo */
+            display: none;
+        }
+        .vp-off{
+            visibility: hidden;
+        }

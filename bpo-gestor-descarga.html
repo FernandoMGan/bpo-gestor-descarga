@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bpo Gestor de Videos</title>
+    <link rel="stylesheet" href="./css/BpoGestorVideoStyles.css">
+    <link rel="stylesheet" href="./css/BpoModalWindowsStyle.css">
+    <link rel="stylesheet" href="./css/BpoHeaderStyles.css">
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="navBoxBrand">
+            <img class="navImg" id="" src="./assets/buttons-svg/list.svg" alt="Menu Hamburguesa">
+            <img class="navImg" id="" src="./assets/logos/logoCombinado.png" alt="Logo Combinado">
+            Bpo Change - Gestor de Descargas
+        </div>
+        <div class="navBoxSearch">
+            <div class="navBoxSearchKeys">
+                <div class="navBoxSearchKeysSearch">
+                    <form action="" method="get">
+                        <div class="inputTxt">
+                            <input type="text" class="form-control" id="idVideoSearched" name="search"
+                                placeholder="Buscar...">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit"
+                                    onclick="event.preventDefault(), fncVideoRun()">Buscar</button>
+                                <!-- C:\Home\Desarrollo\bpo-www\portafolio\bpo-video-player\media\video\JingleSebaBalochi.mpeg -->
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="navBoxSearchKeysImg">
+                    <img class="navImg" id="" src="./assets/buttons-svg/search.svg" alt="Lupa para buscar">
+                    <img class="navImg" id="" src="./assets/buttons-svg/line-vertical.svg" alt="Linea divisoria">
+                    <img class="navImg" id="" src="./assets/buttons-svg/mic-fill.svg" alt="Escribir por Microfono">
+                </div>
+            </div>
+        </div>
+        <div class="navBoxAcount">
+            <img class="navImg" id="" src="./assets/buttons-svg/bell.svg" alt="Campanita de Notificaciones">
+            <img class="navImg" id="" src="./assets/buttons/butLogOff.png" alt="Loguin Off / In de Usuario">
+
+        </div>
+
+    </div>
+    <div class="proyect-title">
+        Testeando Youtube Works - Bpo Gestor Descargas - Devel: Fernando M. Gan
+    </div>
+    <div class="box" id="fr-cntd-gral">
+
+        <div class="panels">
+            <div class="panels-lf-it">
+                <div class="panel-lf">
+                    <div class="panels-srch">
+                        <input type="text" class="txtinput" id="searchInput" placeholder="Escribe tu búsqueda...">
+                        <button id="searchButton" onclick="fncBsqYtRslt()">Buscar</button>
+                    </div>
+                    <ul id="searchResults" class="panels-srch-rslt">
+                        <!-- Aquí se mostrarán los resultados de búsqueda -->
+                    </ul>
+                </div>
+
+                <div class="frCntdLi" id="videoList">
+                    <!-- <div class="frCntdLiGral" id="videoList">
+                    </div> -->
+                </div>
+
+                <div class="frCntdLi vp-none" id="vVideoList">
+                    <!-- Aquí se generarán los resultados de búsqueda -->
+                    <div class="frCntdLiGral">
+                        <div class="frCntdLiGralVideo"><img src="./assets/buttons-svg/app-indicator.svg" alt=""></div>
+                        <div class="frCntdLiGralDetails">
+                            <div class="frCntdLiGralDetailsTitulo">Titulo 001 .........................</div>
+                            <div class="frCntdLiGralDetailsCmds">
+                                <img class="frCmdBtns" src="./assets//buttons-svg/three-dots.svg" alt="Preview Image">
+                                <div class="frCmbBtns"> Vistas</div>
+                                <img class="frCmdBtns" src="./assets//buttons-svg/hand-thumbs-up.svg" alt="Hand Up">
+                                <img class="frCmdBtns" src="./assets//buttons-svg/hand-thumbs-down.svg" alt="Hand Down">
+                                <img class="frCmdBtns" src="./assets//buttons-svg/download.svg" alt="Download">
+                            </div>
+                            <div class="frCntdLiGralDetailsVideoID">Clave:</div>
+                            <div class="frCntdLiGralDetailsResumen">
+                                Este es un resumen del video master Lorem ipsum dolor sit amet consectetur adipisicing
+                                elit.
+                                Minima
+                                illum mollitia recusandae ea. Quis ut laborum, quae porro rerum sapiente minima non
+                                tempora
+                                labore
+                                et numquam. Itaque quisquam molestias modi.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-md">
+                <div class="dPanelMdItVidTitPrimaCab">
+                    <h3>Reproduccion video Seleccionado</h3>
+                </div>
+                <div class="dPanelMdItVidTitPrimaDet TituloPrimario">
+                    <!-- Inserta el reproductor de YouTube -->
+                    <iframe class="yt-video" id="idyt-video" src="" frameborder="0" allowfullscreen></iframe>
+
+                </div>
+                <div class="dPanelMdIt TituloSecundario" id="TituloSecundario">
+                    <div class="TituloSecundarioItCab">
+                        <h4>Estas viendo</h4>
+                    </div>
+                    <div class="TituloSecundarioItDet" id="ReproduciendoTitulo">
+                        <h5>.....</h5>
+                    </div>
+                </div>
+                <div class="dPanelMdIt TituloTranscripOrigianl">
+                    <div class="TituloTranscripOrigianlItCab" id="">
+                        <h4>Transcripcion Original</h4>
+                    </div>
+                    <div class="TituloTranscripOrigianlItDet" id="TranscripOrig">
+                        <h5>.....</h5>
+                    </div>
+
+                </div>
+                <div class="dPanelMdIt TituloTranscripTraduccion">
+                    <div class="TituloTranscripTraduccionCab" id="">
+                        <h4>Transcripcion Original al</h4>
+                    </div>
+                    <div class="TituloTranscripTraduccionDet" id="TranscripTrad">
+                        <h5>.....</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-rt">
+                <h3>Cola de Descargas</h3>
+                <ul class="pnl-rslt-it" id="videoList02">
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Prueba de funcion de miles
+        // console.log('320 -->: ' + bpoReduccionYFormateoNumero(320)); // Devuelve "320"
+        // console.log('320.000 -->: ' + bpoReduccionYFormateoNumero(320000)); // Devuelve "320 K"
+        // console.log('32.000.000 -->: ' + bpoReduccionYFormateoNumero(32000000)); // Devuelve "32 M"
+        // console.log('3.200.000.000 -->: ' + bpoReduccionYFormateoNumero(3200000000)); // Devuelve "3 MM"
+        // console.log('320.000.000.000 -->: ' + bpoReduccionYFormateoNumero(320000000000)); // Devuelve "320 KMM"
+        // console.log('3.200.000.000.000.000 -->: ' + bpoReduccionYFormateoNumero(3200000000000000)); // Devuelve "+ de 320 KMM"
+
+        // ID del video de YouTube
+        const tuApiKey = "AIzaSyDQ3qdZmyEfSP6k2q_QeR0wIHFDZ7gS5_8";
+        let vBsqPref = `https://www.googleapis.com/youtube/v3/search?q=`;
+        let vBsqUniq = ``;
+        let videoId = "ntvdCY7lgKQ";
+        let vVideoTopes = 5;
+        let vCntResults = 0;
+        let vaLastSrch = [];
+
+        // Crear el array vUltRsltBsq
+        const vUltRsltBsq = [];
+
+        // Define la función constructora ReferenciaYtVideo
+        function ReferenciaYtVideo(item) {
+            this.LVidKey = item.id.videoId || '';        // ID del video
+            this.LVidDown = `https://www.youtube.com/watch?v=${item.id.videoId}`;  // Enlace al video
+            this.Titulo = item.title || '';              // Título del video
+            this.Vistas = item.viewCount || 0;           // Cantidad de vistas
+            this.Likes = item.likeCount || 0;            // Cantidad de likes
+            this.Dislikes = item.dislikeCount || 0;      // Cantidad de dislikes
+            this.Description = item.description || '';   // Descripción del video
+            this.Foto = '';                              // URL de la imagen (puedes definirla más tarde)
+
+            // Función para obtener datos adicionales del video utilizando la API de YouTube
+            this.getVideoDetails = async (callback) => {
+                if (this.LVidKey) {
+                    try {
+                        const apiKey = tuApiKey; // Reemplaza 'TU_API_KEY' con tu propia clave de API de YouTube
+                        const apiUrl = `https://www.googleapis.com/youtube/v3/videos?id=${this.LVidKey}&key=${apiKey}&part=statistics,snippet`;
+
+                        const response = await fetch(apiUrl);
+                        const data = await response.json();
+
+                        if (data.items && data.items.length > 0) {
+                            const videoInfo = data.items[0].snippet;
+                            const statistics = data.items[0].statistics;
+
+                            const videoTitle = videoInfo.title;
+                            this.Titulo = videoTitle || '';
+
+                            this.Vistas = parseInt(statistics.viewCount) || 0;
+                            this.Likes = parseInt(statistics.likeCount) || 0;
+                            this.Dislikes = parseInt(statistics.dislikeCount) || 0;
+
+                            // Descripción del video
+                            const videoDescription = videoInfo.description;
+                            this.Description = videoDescription || '';
+
+                            // URL del primer fotograma (imagen de vista previa)
+                            const thumbnailUrl = videoInfo.thumbnails.default.url;
+                            this.Foto = thumbnailUrl;
+
+                            // if (item.snippet && item.snippet.localized.title) {
+                            //     const videoTransc = data.items[0].snippet.localized.title;
+                            //     this.pTrascripOri = videoTransc
+                            // } else {
+                            //     this.pTrascripOri = "Este video no tiene transcripcion.";
+                            // }
+                            // Llamar a la función de devolución de llamada para actualizar los datos
+                            if (callback) {
+                                callback();
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error al obtener detalles del video:', error);
+                    }
+                }
+            };
+
+            // Llama a la función para obtener los detalles del video
+            this.getVideoDetails();
+        }
+
+        // Funciones del proyecto
+        function fncSearchRearm() {
+            const searchInput = document.getElementById("searchInput").value;
+            const searchWords = searchInput.split(" "); // Divide el input en palabras
+
+            // Elimina espacios vacíos al principio o al final de las palabras
+            const sanitizedWords = searchWords.map(word => word.trim());
+
+            // Filtra las palabras no vacías
+            const validWords = sanitizedWords.filter(word => word !== "");
+
+            // Une las palabras con "+"
+            const searchString = validWords.join("+");
+
+            // Construye la URL de búsqueda de YouTube
+            let vURI = `${vBsqPref}${searchString}&key=${tuApiKey}&maxResults=${vVideoTopes}&part=snippet`;
+            return vURI;
+            // return `${vBsqPref}${searchString}&key=${tuApiKey}&maxResults=${vVideoTopes}`;
+        }
+
+        function fncBsqYtNewRslt(videoId) {
+            console.log('Yt fncBsqYtNewRslt Add vid con ID >: ' + videoId);
+            vUltRsltBsq.push(nuevoVideo);
+        }
+
+        function fncBsqYtRslt() {
+            fncBsqYtClean();                                        // Limpieza de array
+            fetch(fncSearchRearm())                                 // Ejecuta Promesa
+                .then(response => response.json())
+                .then(data => {
+                    const videoList = document.getElementById("videoList");
+                    videoList.innerHTML = "";
+
+                    // Itera a través de los resultados de búsqueda y muestra los títulos de los videos
+                    data.items.forEach(item => {
+                        if (item.id.kind === "youtube#video") {
+                            const videoId = item.id.videoId;
+                            const videoItem = new ReferenciaYtVideo(item);
+
+                            videoItem.getVideoDetails(() => {
+                                // Esta función de devolución de llamada se ejecutará cuando se hayan obtenido los datos
+                                // Aquí puedes actualizar la interfaz de usuario con los nuevos datos
+                                // Crea la caja de "frCntdLiGral"
+                                const frCntdLiGral = document.createElement("div");
+                                frCntdLiGral.className = "frCntdLiGral";
+                                videoList.appendChild(frCntdLiGral);
+
+                                // Crea la caja de "frCntdLiGralVideo" y agrega la imagen de vista previa
+                                const frCntdLiGralVideo = document.createElement("div");
+                                frCntdLiGralVideo.className = "frCntdLiGralVideo";
+                                frCntdLiGral.appendChild(frCntdLiGralVideo);
+
+                                // Crea la caja de "frCntdLiGralVideoImage"
+                                const previewImageDiv = document.createElement("img");
+                                previewImageDiv.className = "frCntdLiGralVideoImage"; // Agrega una clase a la imagen si lo deseas
+                                previewImageDiv.src = videoItem.Foto;
+                                previewImageDiv.alt = "Vista previa del video";
+                                // Agrega un evento onclick para llamar a fncJoinMachUnique con el enlace del video
+                                previewImageDiv.onclick = function () {
+                                    fncOnMiniVideoClick(videoItem.LVidKey, videoItem.LVidDown, videoItem.Titulo, videoItem.Description, '');
+                                };
+                                frCntdLiGralVideo.appendChild(previewImageDiv);
+
+                                // Crea la caja de "frCntdLiGralDetails"
+                                const frCntdLiGralDetails = document.createElement("div");
+                                frCntdLiGralDetails.className = "frCntdLiGralDetails";
+                                frCntdLiGral.appendChild(frCntdLiGralDetails);
+
+                                // Define el elemento de título, si no tiene título, agrega "Video sin título"
+                                const titleDiv = document.createElement("div");
+                                titleDiv.className = "frCntdLiGralDetailsTitulo";
+                                titleDiv.onclick = function () {
+                                fncVidReprodClick(videoItem.LVidKey, videoItem.LVidDown, videoItem.Titulo, videoItem.Description, '');
+                                };
+                                frCntdLiGralDetails.appendChild(titleDiv);
+
+                                if (item.snippet && item.snippet.title) {
+                                    titleDiv.textContent = videoItem.Titulo;
+                                } else {
+                                    // titleDiv.textContent = "Video sin título";
+                                    titleDiv.textContent = "Video sin titulo ";
+                                }
+
+                                // Define la barra de comandos
+                                const commandsDiv = document.createElement("div");
+                                commandsDiv.className = "frCntdLiGralDetailsCmds";
+                                frCntdLiGralDetails.appendChild(commandsDiv);
+
+                                const likesDivNum = document.createElement("div");
+                                likesDivNum.className = "frCmdBtns"; // Establece la clase CSS según tus necesidades
+                                commandsDiv.appendChild(likesDivNum);
+
+                                const viewsTextn = document.createTextNode(`    ${bpoReduccionYFormateoNumero(videoItem.Vistas)}     `);
+                                viewsTextn.className = "frCmdBtns";
+                                viewsTextn.id = "frCmdBtnsItViews";
+                                likesDivNum.appendChild(viewsTextn);
+
+                                const likesDiv = document.createElement("div");
+                                likesDiv.className = "frCmdBtns"; // Establece la clase CSS según tus necesidades
+                                commandsDiv.appendChild(likesDiv);
+
+                                const viewsText = document.createTextNode("Vistas");
+                                viewsText.className = "frCmdBtns";
+                                likesDiv.appendChild(viewsText);
+
+                                const likesNum = document.createElement("div");
+                                likesNum.className = "frCmdBtns"; // Establece la clase CSS según tus necesidades
+                                commandsDiv.appendChild(likesNum);
+
+                                const Likesn = document.createTextNode(`     ${bpoReduccionYFormateoNumero(videoItem.Likes)}     `);
+                                Likesn.className = "frCmdBtns";
+                                likesNum.appendChild(Likesn);
+
+                                const handUpIcon = document.createElement("img");
+                                handUpIcon.className = "frCmdBtns";
+                                handUpIcon.id = "frCmdBtnsItHandUp";
+                                handUpIcon.src = "./assets/buttons-svg/hand-thumbs-up.svg";
+                                handUpIcon.alt = "Hand Up";
+                                commandsDiv.appendChild(handUpIcon);
+
+                                const DislikesNum = document.createElement("div");
+                                DislikesNum.className = "frCmdBtns"; // Establece la clase CSS según tus necesidades
+                                commandsDiv.appendChild(DislikesNum);
+
+                                const DisLikesn = document.createTextNode(`     ${bpoReduccionYFormateoNumero(videoItem.Dislikes)}  `);
+                                DisLikesn.className = "frCmdBtns";
+                                DislikesNum.appendChild(DisLikesn);
+
+                                const handDownIcon = document.createElement("img");
+                                handDownIcon.className = "frCmdBtns";
+                                handDownIcon.id = "frCmdBtnsItHandDown";
+                                handDownIcon.src = "./assets/buttons-svg/hand-thumbs-down.svg";
+                                handDownIcon.alt = "Hand Down";
+                                commandsDiv.appendChild(handDownIcon);
+
+                                const previewImageIcon = document.createElement("img");
+                                previewImageIcon.className = "frCmdBtns";
+                                previewImageIcon.src = "./assets/buttons-svg/three-dots.svg";
+                                previewImageIcon.alt = "cant vistas";
+                                commandsDiv.appendChild(previewImageIcon);
+
+                                const downloadIcon = document.createElement("img");
+                                downloadIcon.className = "frCmdBtns";
+                                downloadIcon.id = "frCmdBtnsBtnDown";
+                                downloadIcon.src = "./assets/buttons-svg/download.svg";
+                                downloadIcon.alt = "Download";
+                                downloadIcon.onclick = function () {
+                                    fncVidDownloadClick(videoItem.LVidKey, videoItem.LVidDown, videoItem.Titulo, videoItem.Description, '');
+                                };
+                                commandsDiv.appendChild(downloadIcon);
+
+                                const ClaveVideoID = document.createElement("div");
+                                ClaveVideoID.className = "frCntdLiGralDetailsVideoID vp-off";
+                                frCntdLiGralDetails.appendChild(ClaveVideoID);
+
+                                const ClaveVideoIDTxt = document.createTextNode("Clave : " + videoItem.LVidKey);
+                                ClaveVideoIDTxt.className = "frCntdLiGralDetailsVideoID vp-off";
+                                ClaveVideoID.appendChild(ClaveVideoIDTxt);
+
+                                const summaryDiv = document.createElement("div");
+                                summaryDiv.className = "frCntdLiGralDetailsResumen";
+                                frCntdLiGralDetails.appendChild(summaryDiv);
+
+                                if (item.snippet && item.snippet.description) {
+                                    summaryDiv.textContent = videoItem.Description;
+                                } else {
+                                    summaryDiv.textContent = "Video sin descripcion";
+                                }
+
+                                // const listItem = document.createElement("li");
+                                // listItem.textContent = "Video con clave " + videoId;
+                                // videoList.appendChild(listItem);
+
+                                vaLastSrch.push(videoItem);
+                            });
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error("Error al cargar los videos:", error);
+                });
+        }
+
+        function fncBsqYtClean() {
+            // Limpiando Ult 
+            for (const array of vUltRsltBsq) {
+                for (const prop in array) {
+                    if (Object.prototype.hasOwnProperty.call(array, prop)) {
+                        array[prop] = '';
+                    }
+                }
+            }
+            // Limpiando array de objeto completo 
+            console.log(`Cantidad en el array antes de borrar. -->: ${vaLastSrch.length} Items`);
+            vaLastSrch = [];
+            console.log(`Cantidad en el array despues de borrar. -->: ${vaLastSrch.length} Items`);
+
+        }
+
+        function fncJoinMach() {
+            fetch(fncSearchRearm())
+                .then(response => response.json())
+                .then(data => {
+                    const videoList = document.getElementById("videoList");
+                    videoList.innerHTML = "";
+
+                    // Itera a través de los resultados de búsqueda y muestra los títulos de los videos
+                    data.items.forEach(item => {
+                        if (item.id && item.id.videoId) {
+                            const videoId = item.id.videoId;
+
+                            // Crea la caja de "frCntdLiGral"
+                            const frCntdLiGral = document.createElement("div");
+                            frCntdLiGral.className = "frCntdLiGral";
+                            videoList.appendChild(frCntdLiGral);
+
+                            // Crea la caja de "frCntdLiGralVideo" y agrega la imagen de vista previa
+                            const frCntdLiGralVideo = document.createElement("div");
+                            frCntdLiGralVideo.className = "frCntdLiGralVideo";
+                            frCntdLiGral.appendChild(frCntdLiGralVideo);
+
+                            const previewImage = document.createElement("img");
+                            previewImage.src = "./assets/buttons-svg/app-indicator.svg";
+                            frCntdLiGralVideo.appendChild(previewImage);
+
+                            // Crea la caja de "frCntdLiGralDetails"
+                            const frCntdLiGralDetails = document.createElement("div");
+                            frCntdLiGralDetails.className = "frCntdLiGralDetails";
+                            frCntdLiGral.appendChild(frCntdLiGralDetails);
+
+                            // Define el elemento de título, si no tiene título, agrega "Video sin título"
+                            const titleDiv = document.createElement("div");
+                            titleDiv.className = "frCntdLiGralDetailsTitulo";
+                            frCntdLiGralDetails.appendChild(titleDiv);
+
+                            if (item.snippet && item.snippet.title) {
+                                titleDiv.textContent = item.snippet.title;
+                            } else {
+                                // titleDiv.textContent = "Video sin título";
+                                titleDiv.textContent = "Video con clave " + videoId;
+                            }
+
+                            // Define la barra de comandos
+                            const commandsDiv = document.createElement("div");
+                            commandsDiv.className = "frCntdLiGralDetailsCmds";
+                            frCntdLiGralDetails.appendChild(commandsDiv);
+
+                            const previewImageIcon = document.createElement("img");
+                            previewImageIcon.className = "frCmdBtns";
+                            previewImageIcon.src = "./assets/buttons-svg/three-dots.svg";
+                            previewImageIcon.alt = "cant vistas";
+                            commandsDiv.appendChild(previewImageIcon);
+
+                            const viewsText = document.createTextNode("Vistasxx");
+                            viewsText.className = "frCmdBtnsTxt";
+                            commandsDiv.appendChild(viewsText);
+
+                            const handUpIcon = document.createElement("img");
+                            handUpIcon.className = "frCmdBtns";
+                            handUpIcon.src = "./assets/buttons-svg/hand-thumbs-up.svg";
+                            handUpIcon.alt = "Hand Up";
+                            commandsDiv.appendChild(handUpIcon);
+
+                            const handDownIcon = document.createElement("img");
+                            handDownIcon.className = "frCmdBtns";
+                            handDownIcon.src = "./assets/buttons-svg/hand-thumbs-down.svg";
+                            handDownIcon.alt = "Hand Down";
+                            commandsDiv.appendChild(handDownIcon);
+
+                            const downloadIcon = document.createElement("img");
+                            downloadIcon.className = "frCmdBtns";
+                            downloadIcon.src = "./assets/buttons-svg/download.svg";
+                            downloadIcon.alt = "Download";
+                            commandsDiv.appendChild(downloadIcon);
+
+                            const summaryDiv = document.createElement("div");
+                            summaryDiv.className = "frCntdLiGralDetailsResumen";
+                            frCntdLiGralDetails.appendChild(summaryDiv);
+
+                            if (item.snippet && item.snippet.description) {
+                                summaryDiv.textContent = item.snippet.description;
+                            } else {
+                                summaryDiv.textContent = "Video sin descripcion";
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error("Error al cargar los videos:", error);
+                });
+        }
+        // Funciones del proyecto
+        function fncJoinMachUnique() {
+            // const videoId = "v_izBzD4PBA"; // Reemplaza con el ID del video que deseas obtener la vista previa
+
+            // URL de la API de YouTube para obtener detalles del video
+            const apiUrl = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${tuApiKey}&part=statistics,snippet`;
+
+            // Realizar la solicitud a la API de YouTube
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Acceder a la URL de la imagen de vista previa del video
+                    const thumbnailUrl = data.items[0].snippet.thumbnails.default.url;
+
+                    // Mostrar la imagen de vista previa en una etiqueta de imagen (img)
+                    const previewImage = document.createElement("img");
+                    previewImage.src = thumbnailUrl;
+                    document.body.appendChild(previewImage);
+                })
+                .catch(error => {
+                    console.error("Error al obtener la imagen de vista previa:", error);
+                });
+        }
+        function bpoReduccionYFormateoNumero(num) {
+            switch (String(num).length) {
+                case 1:
+                case 2:
+                case 3:
+                    return String(num);
+                case 4:
+                case 5:
+                case 6:
+                    return (num / 1000).toFixed(2) + " K";
+                case 7:
+                case 8:
+                case 9:
+                    return (num / 1000000).toFixed(2) + " M";
+                case 10:
+                case 11:
+                case 12:
+                    return (num / 1000000000).toFixed(2) + " KM";
+                case 13:
+                case 14:
+                case 15:
+                    return (num / 1000000000000).toFixed(2) + " MM";
+                case 16:
+                case 17:
+                case 18:
+                    return (num / 1000000000000000).toFixed(2) + " KMM";
+                case 19:
+                case 20:
+                case 21:
+                default:
+                    return "+ de " + (num / 1000000000000000).toFixed(2) + " KMM";
+            }
+        }
+
+        function fncOnMiniVideoClick(pVidKey, pVidDown, pVidTitulo, pVidResumen, pTrascripOri) {
+            // Asigna el enlace de video en vaLastSrch utilizando el LVidKey
+            // const videoLink = vaLastSrch.find(item => item.LVidKey === pvideoItem);
+            const vcVideoIFrame = document.getElementById("idyt-video");
+            vcVideoIFrame.src = pVidDown;
+
+            // Asigna Titulo
+            const vcTituloSecundario = document.getElementById("ReproduciendoTitulo");
+            vcTituloSecundario.innerHTML = pVidTitulo;
+
+            // // Asigna Transcripcion Original
+            // const vcTranscripOrig =document.getElementById('TranscripOrig');
+            // vcTranscripOrig.innerHTML = pTrascripOri;
+
+            // Obtén la transcripción y asígnala a un elemento HTML
+            obtenerTranscripcion(pVidKey, function (transcription) {
+                console.log(transcription);
+                alert(transcription);
+                const vcTranscripOrig = document.getElementById('TranscripOrig');
+                // vcTranscripOrig.innerHTML = transcription;
+                vcTranscripOrig.innerHTML = `El video referido tiene por codigo  ${pVidKey}  <br>  y se encuentra en    ${pVidDown}`;
+            });
+
+            // También puedes obtener la traducción al inglés si lo deseas de manera similar
+            // obtenerTranscripcion(pVidKey, function (translation) {
+            //     const vcTranscripTrad = document.getElementById('TranscripTrad');
+            //     vcTranscripTrad.innerHTML = translation;
+            // });            
+
+            // Asigna Traduccion al Ingles
+            const vcTranscripTrad = document.getElementById('TranscripTrad');
+            vcTranscripTrad.innerHTML = pTrascripOri;
+            fncVidReprodClick(pVidKey, pVidDown, pVidTitulo, pVidResumen, pTrascripOri, '');
+
+        }
+        function obtenerTranscripcion(videoId, callback) {
+            const apiKey = tuApiKey; // Reemplaza 'TU_API_KEY' con tu propia clave de API de YouTube
+            const apiUrl = `https://www.googleapis.com/youtube/v3/captions?part=snippet&id=${videoId}&key=${apiKey}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.items && data.items.length > 0) {
+                        const caption = data.items[0].snippet;
+                        const transcription = caption.body;
+                        callback(transcription);
+                    } else {
+                        // callback('Transcripción no disponible');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al obtener la transcripción:', error);
+                    callback('Error al obtener la transcripción');
+                });
+        }
+        function fncVidDownloadClick(pLVidKey, pLVidDown, pTitulo, pDescription, pCaption) {
+            // Llama a showModal con el ID del video que se está poniendo en cola
+            const videoId = "pVideoKey"; // Reemplaza con el ID real del video
+            var vMsg = `Ustede quiere poner en descarga el video con key ${pLVidKey} esta funcionalidad esta prevista para mediados de noviembre del 2023, si usted quiere donar algun dinero para poder avanzar en este y muchos otros proyectos, se solicita envien un correo a fmgsch@gmail.com, por favor en el asunto escriba la referencia (Aporte de Proyecto), cualquier donacion o aporte es muy bienvenido. Muchas Gracias`;
+            alert(vMsg);
+        }
+        function fncVidReprodClick(pLVidKey, pLVidDown, pTitulo, pDescription, pCaption) {
+            // Llama a showModal con el ID del video que se está poniendo en cola
+            const videoId = "pVideoKey"; // Reemplaza con el ID real del video
+            var vMsg = `Ustede quiere reproducir un video con titulo ${pTitulo} , esta funcionalidad esta prevista para mediados de noviembre del 2023, si usted quiere donar algun dinero para poder avanzar en este y muchos otros proyectos, se solicita envien un correo a fmgsch@gmail.com, por favor en el asunto escriba la referencia (Aporte de Proyecto), cualquier donacion o aporte es muy bienvenido. Muchas Gracias                     Este video tiene como descripcion los datos listados debajo, es muy probable que no funcione tambien porque llego al limite de consultas gratuitas.                             ${pDescription}`;
+            alert(vMsg);
+        }
+    </script>
+</body>
+
+</html>
